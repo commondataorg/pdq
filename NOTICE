@@ -1,11 +1,14 @@
 PDQ and vPDQ for Go
-Copyright (c) 2026, Common Data.
+Copyright (c) 2026, Common Data Incorporated.
 
-This product includes software developed by Common Data as part of the
-Common Data platform. The PDQ and vPDQ implementations reproduce the output
-of Meta's PDQ and vPDQ reference implementations in the ThreatExchange
-project (https://github.com/facebook/ThreatExchange), BSD-3-Clause, bit
-for bit.
+This product includes software developed by Common Data Incorporated as
+part of the Common Data platform, reproducing the output of Meta's PDQ
+and vPDQ reference implementations in the ThreatExchange project
+(https://github.com/facebook/ThreatExchange, BSD-3-Clause): the pdq
+package matches pdqhash-python bit for bit wherever the decoded pixel
+bytes agree, and the vpdq package matches the C++ vPDQ frame for frame
+given x86-64 ffmpeg. Decoder and platform differences are documented in
+the README.
 
 Test fixtures include content from facebook/ThreatExchange
 (BSD-3-Clause): the bridge photograph in testdata/ (pdq/data/bridge-mods)
