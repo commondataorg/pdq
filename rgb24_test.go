@@ -54,6 +54,18 @@ func TestFillLumaFromRGB24_SelectsLuma(t *testing.T) {
 	}
 }
 
+// TestLumaFromRGB8_Unfused checks the lookup tables against numpy's
+// arithmetic, each product rounded before the sum, on all 2^24 RGB triples.
+func TestLumaFromRGB8_Unfused(t *testing.T) {
+	for i := range 1 << 24 {
+		r, g, b := uint8(i>>16), uint8(i>>8), uint8(i)
+		want := float32(float64(float64(float64(r)*0.299)+float64(float64(g)*0.587)) + float64(float64(b)*0.114))
+		if got := lumaFromRGB8(r, g, b); math.Float32bits(got) != math.Float32bits(want) {
+			t.Fatalf("luma(%d,%d,%d) = %#08x, want %#08x", r, g, b, math.Float32bits(got), math.Float32bits(want))
+		}
+	}
+}
+
 func TestComputeHashFromRGB24(t *testing.T) {
 	const rows, cols = 50, 70
 	rng := rand.New(rand.NewSource(4))

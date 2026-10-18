@@ -1,6 +1,7 @@
 package pdq
 
 import (
+	"fmt"
 	"image"
 	"math/rand"
 	"testing"
@@ -63,6 +64,15 @@ func TestFillFloatLuma_FastMatchesGeneric(t *testing.T) {
 		rng.Read(yc.Cb)
 		rng.Read(yc.Cr)
 		imgs["YCbCr_"+ratio.String()] = yc
+
+		// Odd and negative origins, where chroma offsets round differently.
+		for _, o := range []image.Point{{5, 7}, {-9, -3}} {
+			big := image.NewYCbCr(image.Rect(o.X-3, o.Y-2, o.X+w+4, o.Y+h+5), ratio)
+			rng.Read(big.Y)
+			rng.Read(big.Cb)
+			rng.Read(big.Cr)
+			imgs[fmt.Sprintf("YCbCr_%s_sub%d,%d", ratio, o.X, o.Y)] = big.SubImage(image.Rect(o.X, o.Y, o.X+w, o.Y+h))
+		}
 	}
 
 	for name, img := range imgs {

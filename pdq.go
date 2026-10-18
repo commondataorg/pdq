@@ -151,9 +151,7 @@ func ComputeHashFromRGBBytes(rr, gg, bb []uint8, numRows, numCols int) (*Hash, e
 // numpy luminance: (uint8*0.299 + uint8*0.587 + uint8*0.114).astype('float32').
 func fillFloatLumaFromRGB(rr, gg, bb []uint8, luma []float32, n int) {
 	for k := range n {
-		luma[k] = float32(float64(rr[k])*0.299 +
-			float64(gg[k])*0.587 +
-			float64(bb[k])*0.114)
+		luma[k] = lumaFromRGB8(rr[k], gg[k], bb[k])
 	}
 }
 
@@ -190,14 +188,23 @@ func fillFloatLumaGeneric(img image.Image, luma []float32, numRows, numCols int)
 	}
 }
 
-// lumaFromRGB8 computes the PDQ luminance of one 8-bit RGB pixel using the exact
-// float64 intermediate arithmetic shared by every code path (generic and fast),
-// so all paths are bit-identical.
+// lumaR, lumaG and lumaB hold each channel's float64 product, rounded once as
+// numpy rounds it, so no build can fuse a multiply into the sum.
+var lumaR, lumaG, lumaB [256]float64
+
+func init() {
+	for i := range 256 {
+		lumaR[i] = float64(i) * 0.299
+		lumaG[i] = float64(i) * 0.587
+		lumaB[i] = float64(i) * 0.114
+	}
+}
+
+// lumaFromRGB8 computes the PDQ luminance of one 8-bit RGB pixel as
+// pdqhash-python does: float64 products, summed left to right, then rounded to
+// float32. Every code path uses it, so all paths are bit-identical.
 func lumaFromRGB8(r, g, b uint8) float32 {
-	return float32(
-		float64(r)*0.299 +
-			float64(g)*0.587 +
-			float64(b)*0.114)
+	return float32(lumaR[r] + lumaG[g] + lumaB[b])
 }
 
 // computeHashFromLuma computes the PDQ hash from luminance data.

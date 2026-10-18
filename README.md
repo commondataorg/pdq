@@ -130,9 +130,9 @@ Median hash time on an Intel Core Ultra 7 155H, pinned to one P-core, Go
 
 | Input                       | Default build | `GOEXPERIMENT=simd` |
 | --------------------------- | ------------- | ------------------- |
-| 1600x1004 JPEG, with decode | 34.5 ms       | 32.5 ms             |
-| 1024x1024 synthetic luma    | 4.3 ms        | 2.8 ms              |
-| 64x64 luma, core hash       | 169 us        | 26.8 us             |
+| 1600x1004 JPEG, with decode | 27.3 ms       | 25.7 ms             |
+| 1024x1024 synthetic luma    | 3.8 ms        | 2.6 ms              |
+| 64x64 luma, core hash       | 157 us        | 24.8 us             |
 
 ### Compared with pdqhash-python
 
@@ -141,16 +141,15 @@ machine and P-core as above:
 
 | Work                                | pdqhash-python | Go, default | Go, `GOEXPERIMENT=simd` |
 | ----------------------------------- | -------------- | ----------- | ----------------------- |
-| File to hash, HMA path              | 27.3 ms        | 35.5 ms     | 32.0 ms                 |
-| Decoded RGB pixels to hash          | 20.7 ms        | 7.7 ms      | 6.0 ms                  |
+| File to hash, HMA path              | 25.5 ms        | 27.3 ms     | 25.6 ms                 |
+| Decoded RGB pixels to hash          | 19.2 ms        | 6.5 ms      | 5.0 ms                  |
 
 - **File to hash** is python-threatexchange's `pdq_from_file` (Pillow decode,
   then `pdqhash.compute`) against `ComputeHashFromFile(path,
-  HMACompatible())`. Decoding dominates both: `image/jpeg` takes about 16 ms
-  on this file where Pillow (libjpeg-turbo 3.1.3) decodes it to an array in
-  about 9 ms, and the Go path then reads luma from the decoded `image.Image`
-  pixel by pixel. For pixels already decoded elsewhere,
-  `ComputeHashFromRGB24` skips both.
+  HMACompatible())`. `image/jpeg` takes about 14 ms on this file where
+  Pillow (libjpeg-turbo 3.1.3) decodes it to an array in about 6 ms, and the
+  Go path then reads luma from the decoded `image.Image` pixel by pixel. For
+  pixels already decoded elsewhere, `ComputeHashFromRGB24` skips both.
 - **Decoded RGB pixels to hash** is `pdqhash.compute` on Pillow's `uint8`
   1004x1600x3 array against `ComputeHashFromRGB24` on the same image's
   interleaved RGB bytes. Both use pdqhash-python's luma and return the same
@@ -158,8 +157,9 @@ machine and P-core as above:
 
 pdqhash 0.2.8 publishes no Linux wheels, so on Linux it is compiled from the
 sdist: here with GCC 16.2.1 at `-O3`, no `-march`, against CPython 3.14.8.
-Python figures are the median of 200 calls after 10 warm-up calls; Go
-figures are the benchstat median of 10 runs at `-cpu 1`. To reproduce:
+Python figures are the middle of three runs of the script, each the median
+of 200 calls after 10 warm-up calls; Go figures are the benchstat median of
+10 runs at `-cpu 1`. To reproduce:
 
     taskset -c 2 go test -run '^$' -bench 'FileHMA$|RGB24$' -cpu 1 -count 10 .
     GOEXPERIMENT=simd taskset -c 2 go test -run '^$' -bench 'FileHMA$|RGB24$' -cpu 1 -count 10 .
