@@ -1,0 +1,24 @@
+version: "2"
+
+formatters:
+  enable:
+    - gofmt
+
+linters:
+  enable:
+    - gosec
+    - nilnil
+    - nilnesserr
+  settings:
+    gosec:
+      excludes:
+        - G104 # unchecked errors: errcheck covers this
+        - G115 # width-changing integer conversions are deliberate in the byte-level fixture crafting and luma paths
+        - G204 # ffmpeg/ffprobe argv is a fixed slice; input is a file: URL under -protocol_whitelist file
+        - G304 # hashing caller-supplied file paths is this library's API
+        - G602 # dihedral ids are bounded 1..7; gosec's taint analysis cannot see it
+  exclusions:
+    rules:
+      - path: _test\.go
+        linters:
+          - gosec # deterministic math/rand seeds and scratch fixture files in tests are deliberate

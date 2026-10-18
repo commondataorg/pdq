@@ -251,7 +251,7 @@ func hashLumaInPlace(buffer1, buffer2 []float32, numRows, numCols int) ([32]byte
 // This is safe because Go arrays are contiguous in memory, so a [64][64]float32
 // has the same memory layout as a [4096]float32.
 func buffer64x64Flat(b *[64][64]float32) []float32 {
-	return unsafe.Slice(&b[0][0], 64*64)
+	return unsafe.Slice(&b[0][0], 64*64) //nolint:gosec // fixed-size view over [64][64]
 }
 
 // pdqBuffer16x16ToBits converts the 16x16 DCT output to hash bits.
