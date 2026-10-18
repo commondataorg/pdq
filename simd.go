@@ -155,3 +155,20 @@ func boxAlongColsSweepVector(in, out []float32, numRows, numCols, fullWindowSize
 		oi++
 	}
 }
+
+// vectorDivide makes the row filter defer its divides to divideFloats.
+var vectorDivide = simdHardware
+
+// divideFloats divides each element of v by d. Div is exact IEEE division
+// per lane, so it matches the scalar quotient bit for bit.
+func divideFloats(v []float32, d float32) {
+	dv := simd.BroadcastFloat32s(d)
+	l := dv.Len()
+	c := 0
+	for ; c+l <= len(v); c += l {
+		simd.LoadFloat32s(v[c:]).Div(dv).Store(v[c:])
+	}
+	for ; c < len(v); c++ {
+		v[c] /= d
+	}
+}

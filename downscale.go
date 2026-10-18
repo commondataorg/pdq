@@ -136,22 +136,48 @@ func boxRows4(in, out []float32, numCols, fullWindowSize, base int) {
 	}
 
 	d := float32(currentWindowSize)
-	for range phase3Nreps {
-		s0 += r0[ri]
-		s0 -= r0[li]
-		s1 += r1[ri]
-		s1 -= r1[li]
-		s2 += r2[ri]
-		s2 -= r2[li]
-		s3 += r3[ri]
-		s3 -= r3[li]
-		o0[oi] = s0 / d
-		o1[oi] = s1 / d
-		o2[oi] = s2 / d
-		o3[oi] = s3 / d
-		li++
-		ri++
-		oi++
+	if vectorDivide {
+		// Store the running sums, then divide them in vectors.
+		lo := oi
+		for range phase3Nreps {
+			s0 += r0[ri]
+			s0 -= r0[li]
+			s1 += r1[ri]
+			s1 -= r1[li]
+			s2 += r2[ri]
+			s2 -= r2[li]
+			s3 += r3[ri]
+			s3 -= r3[li]
+			o0[oi] = s0
+			o1[oi] = s1
+			o2[oi] = s2
+			o3[oi] = s3
+			li++
+			ri++
+			oi++
+		}
+		divideFloats(o0[lo:oi], d)
+		divideFloats(o1[lo:oi], d)
+		divideFloats(o2[lo:oi], d)
+		divideFloats(o3[lo:oi], d)
+	} else {
+		for range phase3Nreps {
+			s0 += r0[ri]
+			s0 -= r0[li]
+			s1 += r1[ri]
+			s1 -= r1[li]
+			s2 += r2[ri]
+			s2 -= r2[li]
+			s3 += r3[ri]
+			s3 -= r3[li]
+			o0[oi] = s0 / d
+			o1[oi] = s1 / d
+			o2[oi] = s2 / d
+			o3[oi] = s3 / d
+			li++
+			ri++
+			oi++
+		}
 	}
 
 	for range phase4Nreps {

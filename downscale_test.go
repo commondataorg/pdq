@@ -97,6 +97,11 @@ func TestBoxAlongCols_MatchesScalar(t *testing.T) {
 // bit-identical to the one-row-at-a-time scalar filter, including heights
 // that are not a multiple of four.
 func TestBoxAlongRows_MatchesScalar(t *testing.T) {
+	checkBoxRowsMatchScalar(t)
+}
+
+func checkBoxRowsMatchScalar(t *testing.T) {
+	t.Helper()
 	rng := rand.New(rand.NewSource(13))
 	for _, dims := range [][2]int{
 		{64, 64}, {100, 100}, {3000, 4000}, {19, 17}, {1, 64}, {7, 64}, {15, 64}, {16, 64},
