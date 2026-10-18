@@ -130,9 +130,9 @@ Median hash time on an Intel Core Ultra 7 155H, pinned to one P-core, Go
 
 | Input                       | Default build | `GOEXPERIMENT=simd` |
 | --------------------------- | ------------- | ------------------- |
-| 1600x1004 JPEG, with decode | 27.3 ms       | 25.7 ms             |
-| 1024x1024 synthetic luma    | 3.8 ms        | 2.6 ms              |
-| 64x64 luma, core hash       | 157 us        | 24.8 us             |
+| 1600x1004 JPEG, with decode | 27.0 ms       | 25.1 ms             |
+| 1024x1024 synthetic luma    | 3.8 ms        | 2.5 ms              |
+| 64x64 luma, core hash       | 158 us        | 25.0 us             |
 
 ### Compared with pdqhash-python
 
@@ -141,13 +141,13 @@ machine and P-core as above:
 
 | Work                                | pdqhash-python | Go, default | Go, `GOEXPERIMENT=simd` |
 | ----------------------------------- | -------------- | ----------- | ----------------------- |
-| File to hash, HMA path              | 25.5 ms        | 27.3 ms     | 25.6 ms                 |
-| Decoded RGB pixels to hash          | 19.2 ms        | 6.5 ms      | 5.0 ms                  |
+| File to hash, HMA path              | 25.7 ms        | 27.4 ms     | 25.1 ms                 |
+| Decoded RGB pixels to hash          | 19.3 ms        | 6.5 ms      | 4.6 ms                  |
 
 - **File to hash** is python-threatexchange's `pdq_from_file` (Pillow decode,
   then `pdqhash.compute`) against `ComputeHashFromFile(path,
-  HMACompatible())`. `image/jpeg` takes about 14 ms on this file where
-  Pillow (libjpeg-turbo 3.1.3) decodes it to an array in about 6 ms, and the
+  HMACompatible())`. `image/jpeg` decodes this file in about 13 ms, where
+  Pillow (libjpeg-turbo 3.1.3) takes 6 to 9 ms depending on the run, and the
   Go path then reads luma from the decoded `image.Image` pixel by pixel. For
   pixels already decoded elsewhere, `ComputeHashFromRGB24` skips both.
 - **Decoded RGB pixels to hash** is `pdqhash.compute` on Pillow's `uint8`
