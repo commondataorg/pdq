@@ -20,7 +20,8 @@ jobs:
           go-version-file: go.mod
       - name: Leak gate
         run: |
-          if git grep -iE 'super-straw|SMO-|cortex|telesync|tpg-|observatory|gs://'; then
+          # the gate's own pattern lives in this file; everything else must match nothing
+          if git grep -iE 'super-straw|SMO-|cortex|telesync|tpg-|observatory|gs://' -- . ':(exclude).github/workflows/ci.yml'; then
             echo 'private references found in the tree' >&2
             exit 1
           fi
