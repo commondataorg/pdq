@@ -1,6 +1,7 @@
 package pdq
 
 import (
+	"bytes"
 	"encoding/base64"
 	"encoding/hex"
 	"image"
@@ -250,6 +251,44 @@ func BenchmarkComputeHash(b *testing.B) {
 	for b.Loop() {
 		_, err := ComputeHashFromFile(testImage)
 		if err != nil {
+			b.Fatal(err)
+		}
+	}
+}
+
+// BenchmarkComputeHashFromFileHMA is the counterpart of pdq_from_file in
+// scripts/bench_pdqhash.py.
+func BenchmarkComputeHashFromFileHMA(b *testing.B) {
+	for b.Loop() {
+		if _, err := ComputeHashFromFile(testImage, HMACompatible()); err != nil {
+			b.Fatal(err)
+		}
+	}
+}
+
+// BenchmarkComputeHashFromRGB24 hashes testImage's decoded pixels, the
+// counterpart of pdqhash.compute in scripts/bench_pdqhash.py.
+func BenchmarkComputeHashFromRGB24(b *testing.B) {
+	data, err := os.ReadFile(testImage)
+	if err != nil {
+		b.Fatal(err)
+	}
+	img, _, err := image.Decode(bytes.NewReader(data))
+	if err != nil {
+		b.Fatal(err)
+	}
+	bounds := img.Bounds()
+	rows, cols := bounds.Dy(), bounds.Dx()
+	rgb := make([]byte, 0, 3*rows*cols)
+	for y := bounds.Min.Y; y < bounds.Max.Y; y++ {
+		for x := bounds.Min.X; x < bounds.Max.X; x++ {
+			r, g, bl, _ := img.At(x, y).RGBA()
+			rgb = append(rgb, uint8(r>>8), uint8(g>>8), uint8(bl>>8))
+		}
+	}
+
+	for b.Loop() {
+		if _, err := ComputeHashFromRGB24(rgb, rows, cols); err != nil {
 			b.Fatal(err)
 		}
 	}
