@@ -130,7 +130,7 @@ Hash time on an Intel Core Ultra 7 155H, one core, Go 1.27.1:
 | Input                            | Default build | `GOEXPERIMENT=simd` |
 | --------------------------------- | ------------- | -------------------- |
 | 1600x1004 JPEG, with decode       | 42.0 ms       | 38.6 ms              |
-| Same image, pre-decoded to luma   | 5.3 ms        | 4.2 ms               |
+| 1024x1024 synthetic luma          | 5.3 ms        | 4.2 ms               |
 | 64x64 luma, core hash             | 213 us        | 35.5 us              |
 
 ## vpdq — video hashing
