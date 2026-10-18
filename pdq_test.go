@@ -10,8 +10,8 @@ import (
 	"testing"
 )
 
-// testImage is a 746x445 progressive JPEG.
-const testImage = "testdata/test.jpg"
+// testImage is a 1600x1004 JPEG (ThreatExchange's bridge-mods/aaa-orig.jpg).
+const testImage = "testdata/bridge.jpg"
 
 func TestComputeHashFromFile(t *testing.T) {
 	hash, err := ComputeHashFromFile(testImage)
@@ -33,23 +33,23 @@ func TestComputeHashFromFile(t *testing.T) {
 
 	t.Logf("PDQ Hash: %s (quality: %d)", hash.Data, hash.Quality)
 
-	// Compare with CGO reference hash
-	// The CGO implementation using CImg produces:
-	cgoHash := "6369dc34826281c39cdc69d753a72cfdda955d286331db40346a32dee17a2da3"
+	// Compare with the pdqhash reference hash (Meta's PDQ C++ via Python
+	// bindings, threatexchange 1.2.16) computed on the same file.
+	refHash := "f8f8f0cee0f4a84f06370a22038f63f0b36e2ed596621e1d33e6b39c4e9c9b22"
 
-	dist, err := HammingDistance(hash.Data, cgoHash)
+	dist, err := HammingDistance(hash.Data, refHash)
 	if err != nil {
 		t.Fatalf("Failed to compute hamming distance: %v", err)
 	}
 
-	t.Logf("Hamming distance from CGO reference: %d bits", dist)
+	t.Logf("Hamming distance from pdqhash reference: %d bits", dist)
 
-	// The pure Go implementation may differ slightly from CGO due to
-	// different JPEG decoding libraries (Go's image/jpeg vs CImg).
+	// The pure Go implementation may differ slightly from pdqhash due to
+	// different JPEG decoding libraries (Go's image/jpeg vs Pillow).
 	// A hamming distance of <= 10 is acceptable as both implementations
 	// will identify the same similar images (PDQ threshold is typically 31).
 	if dist > 10 {
-		t.Errorf("Hash differs too much from CGO reference: %d bits (max 10)", dist)
+		t.Errorf("Hash differs too much from pdqhash reference: %d bits (max 10)", dist)
 	}
 }
 

@@ -1,0 +1,472 @@
+{
+ "generated_with": {
+  "threatexchange": "1.2.16",
+  "pdqhash": "0.2.8",
+  "pillow": "12.3.0",
+  "numpy": "2.5.3"
+ },
+ "cases": [
+  {
+   "file": "photo-jpg-420.jpg",
+   "mode": "RGB",
+   "hash_hex": "d0f8f0ccc0f4a84f0e370a32038f67f0b36e2ed5b6623e1d33e6a39c4e9c9b22",
+   "quality": 100,
+   "lossy": true
+  },
+  {
+   "file": "photo-jpg-422.jpg",
+   "mode": "RGB",
+   "hash_hex": "d0f8f0ccc0f4a84f0e370a32038f67f0b36e2ed5b6623e1d33e6a39c4e9c9b22",
+   "quality": 100,
+   "lossy": true
+  },
+  {
+   "file": "photo-jpg-444.jpg",
+   "mode": "RGB",
+   "hash_hex": "d0f8f0ccc0f4a84f0e370a32038f67f0b36e2ed5b6623e1d33e6a39c4e9c9b22",
+   "quality": 100,
+   "lossy": true
+  },
+  {
+   "file": "photo-jpg-progressive.jpg",
+   "mode": "RGB",
+   "hash_hex": "d0f8f0ccc0f4a84f0e370a32038f67f0b36e2ed5b6623e1d33e6a39c4e9c9b22",
+   "quality": 100,
+   "lossy": true
+  },
+  {
+   "file": "photo-jpg-grey.jpg",
+   "mode": "L",
+   "hash_hex": "d0f8f0ccc0f4a84f0e370a32038f67f0b36e2ed5b6623e1d33e6a39c4e9c9b22",
+   "quality": 100,
+   "lossy": true
+  },
+  {
+   "file": "photo-jpg-cmyk.jpg",
+   "mode": "CMYK",
+   "hash_hex": "2f070f333f0b57b0f1c8f5cdfc70980f4c91d12a499dc1e2cc195c63b16364dd",
+   "quality": 100,
+   "lossy": true
+  },
+  {
+   "file": "photo-png-rgb.png",
+   "mode": "RGB",
+   "hash_hex": "d0f8f0ccc0f4a84f0e370a32038f67f0b36e2ed5b6623e1d33e6a39c4e9c9b22",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "photo-png-rgba.png",
+   "mode": "RGBA",
+   "hash_hex": "d0f8f0ccc0f4a84f0e370a32038f67f0b36e2ed5b6623e1d33e6a39c4e9c9b22",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "photo-png-grey.png",
+   "mode": "L",
+   "hash_hex": "d0f8f0ccc0f4a84f0e370a32038f67f0b36e2ed5b6623e1d33e6a39c4e9c9b22",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "photo-png-grey-alpha.png",
+   "mode": "LA",
+   "hash_hex": "d0f8f0ccc0f4a84f0e370a32038f67f0b36e2ed5b6623e1d33e6a39c4e9c9b22",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "photo-png-palette.png",
+   "mode": "P",
+   "hash_hex": "2725073b1b011f90f9c9f9e5f870da0fcc91d83a499dc9ac6c19da63b06364dd",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "photo-png-palette-16.png",
+   "mode": "P",
+   "hash_hex": "072f0f3b1b031f92f9c9f9c5c971da0f4c91d83a499dc9ac4c19da62a06365dd",
+   "quality": 27,
+   "lossy": false
+  },
+  {
+   "file": "photo-png-palette-trns.png",
+   "mode": "P",
+   "hash_hex": "2725073b1b011f90f9c9f9e5f870da0fcc91d83a499dc9ac6c19da63b06364dd",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "photo-png-grey16.png",
+   "mode": "I;16",
+   "hash_hex": "00001134000011342c4b00002c4b1134000000002c4b2c4b00002c4b8200554b",
+   "quality": 0,
+   "lossy": false
+  },
+  {
+   "file": "photo-png-grey16-trns.png",
+   "mode": "I;16",
+   "hash_hex": "00001134000011342c4b00002c4b1134000000002c4b2c4b00002c4b8200554b",
+   "quality": 0,
+   "lossy": false
+  },
+  {
+   "file": "photo-png-1bit.png",
+   "mode": "1",
+   "hash_hex": "d0f4f0cec0f4604f0e370a28238f63f0b36e27e536227e9f32e6b39c0e9c9f22",
+   "quality": 0,
+   "lossy": false
+  },
+  {
+   "file": "photo-png-1bit-trns.png",
+   "mode": "1",
+   "hash_hex": "d0f4f0cec0f4604f0e370a28238f63f0b36e27e536227e9f32e6b39c0e9c9f22",
+   "quality": 0,
+   "lossy": false
+  },
+  {
+   "file": "photo-gif.gif",
+   "mode": "P",
+   "hash_hex": "2725073b1b011f90f9c9f9e5f870da0fcc91d83a499dc9ac6c19da63b06364dd",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "photo-gif-offset-frame.gif",
+   "mode": "P",
+   "hash_hex": "0cc13cc9f278d36cc31083c99fc1473e6c1e3c3331fbb6664a6ed8c141fb472d",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "photo-gif-offset-transparent.gif",
+   "mode": "P",
+   "hash_hex": "0cc13cc9f278d36cc31083c99fc1473e6c1e3c3331fbb6664a6ed8c141fb472d",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "photo-gif-transparent-past-palette.gif",
+   "mode": "P",
+   "hash_hex": "1cc13cc994faf36cc57a83c985ea4f3e6c9e3c337a81a6e67a05f8c17a81470c",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "photo-gif-frame-overruns-screen.gif",
+   "mode": "P",
+   "hash_hex": "2725073b1b011f90f9c9f9e5f870da0fcc91d83a499dc9ac6c19da63b06364dd",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "photo-webp-lossless.webp",
+   "mode": "RGB",
+   "hash_hex": "d0f8f0ccc0f4a84f0e370a32038f67f0b36e2ed5b6623e1d33e6a39c4e9c9b22",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "photo-webp-alpha.webp",
+   "mode": "RGBA",
+   "hash_hex": "d0f8f0ccc0f4a84f0e370a32038f67f0b36e2ed5b6623e1d33e6a39c4e9c9b22",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "photo-webp-lossy.webp",
+   "mode": "RGB",
+   "hash_hex": "d8f8f0ccc0f4a84f0e370a22038f67f0b36e2ed5b6623e1d33e6a39c4e9c9b22",
+   "quality": 100,
+   "lossy": true
+  },
+  {
+   "file": "photo-webp-lossy-alpha.webp",
+   "mode": "RGBA",
+   "hash_hex": "d0f8f0ccc0f4a84f0e370a32038f67f0b36e2ed5b6623e1d33e6a39c4e9c9b22",
+   "quality": 100,
+   "lossy": true
+  },
+  {
+   "file": "photo-bmp.bmp",
+   "mode": "RGB",
+   "hash_hex": "d0f8f0ccc0f4a84f0e370a32038f67f0b36e2ed5b6623e1d33e6a39c4e9c9b22",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "photo-tiff-rgb.tiff",
+   "mode": "RGB",
+   "hash_hex": "d0f8f0ccc0f4a84f0e370a32038f67f0b36e2ed5b6623e1d33e6a39c4e9c9b22",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "photo-tiff-rgba.tiff",
+   "mode": "RGBA",
+   "hash_hex": "d0f8f0ccc0f4a84f0e370a32038f67f0b36e2ed5b6623e1d33e6a39c4e9c9b22",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "photo-tiff-rgba-associated.tiff",
+   "mode": "RGBA",
+   "hash_hex": "d0f8f0cec0f4a84f0e370a32028f67f0b36e2ed5b6623e1d33e6a39c4e9c9b22",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "photo-tiff-palette.tiff",
+   "mode": "P",
+   "hash_hex": "2725073b1b011f90f9c9f9e5f870da0fcc91d83a499dc9ac6c19da63b06364dd",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "photo-tiff-1bit.tiff",
+   "mode": "1",
+   "hash_hex": "d0f4f0cec0f4604f0e370a28238f63f0b36e27e536227e9f32e6b39c0e9c9f22",
+   "quality": 0,
+   "lossy": false
+  },
+  {
+   "file": "photo-tiff-1bit-g4.tiff",
+   "mode": "1",
+   "hash_hex": "d0f4f0cec0f4604f0e370a28238f63f0b36e27e536227e9f32e6b39c0e9c9f22",
+   "quality": 0,
+   "lossy": false
+  },
+  {
+   "file": "synth-jpg-420.jpg",
+   "mode": "RGB",
+   "hash_hex": "801daaa55b7ebf90306a7e84417fbb84507f007faf84457e9a99a8780a89d47f",
+   "quality": 100,
+   "lossy": true
+  },
+  {
+   "file": "synth-jpg-422.jpg",
+   "mode": "RGB",
+   "hash_hex": "805daba5537ebf90306b7a80417fbb84507f007faf84457e9a99a8780a89d47f",
+   "quality": 100,
+   "lossy": true
+  },
+  {
+   "file": "synth-jpg-444.jpg",
+   "mode": "RGB",
+   "hash_hex": "805daaa5537ebf90306a7e86417fbb84507f007faf84457e9a91a8780a89d47f",
+   "quality": 100,
+   "lossy": true
+  },
+  {
+   "file": "synth-jpg-progressive.jpg",
+   "mode": "RGB",
+   "hash_hex": "801daaa55b7ebf90306a7e84417fbb84507f007faf84457e9a99a8780a89d47f",
+   "quality": 100,
+   "lossy": true
+  },
+  {
+   "file": "synth-jpg-grey.jpg",
+   "mode": "L",
+   "hash_hex": "805daaa5537ebf90306a7e86417fbb84507f007faf84457e9a91a8780a89d47f",
+   "quality": 100,
+   "lossy": true
+  },
+  {
+   "file": "synth-jpg-cmyk.jpg",
+   "mode": "CMYK",
+   "hash_hex": "2f82555aa481006fef9c8179be80c47bff80ff80107bfa816d664795f57e9b80",
+   "quality": 100,
+   "lossy": true
+  },
+  {
+   "file": "synth-png-rgb.png",
+   "mode": "RGB",
+   "hash_hex": "907dbaa55b7eff9010627e82417fbb84507f007faf84457eda99a86a0a80447f",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "synth-png-rgba.png",
+   "mode": "RGBA",
+   "hash_hex": "907dbaa55b7eff9010627e82417fbb84507f007faf84457eda99a86a0a80447f",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "synth-png-grey.png",
+   "mode": "L",
+   "hash_hex": "807dbaa55b7eff9010627e82417fbb84507f007faf84457eda99a86a4a80447f",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "synth-png-grey-alpha.png",
+   "mode": "LA",
+   "hash_hex": "807dbaa55b7eff9010627e82417fbb84507f007faf84457eda99a86a4a80447f",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "synth-png-palette.png",
+   "mode": "P",
+   "hash_hex": "7366bccae6924871c9ccb3ce88b146712f026f87647318f893ccdb8d6c23f5c8",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "synth-png-palette-16.png",
+   "mode": "P",
+   "hash_hex": "66724ccee721a83361dcc747bc23e622474e9fc6e622626343cc138fbc23fb31",
+   "quality": 4,
+   "lossy": false
+  },
+  {
+   "file": "synth-png-palette-trns.png",
+   "mode": "P",
+   "hash_hex": "7366bccae6924871c9ccb3ce88b146712f026f87647318f893ccdb8d6c23f5c8",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "synth-png-grey16.png",
+   "mode": "I;16",
+   "hash_hex": "00001134000011342c4b00002c4b1134000000002c4b2c4b00002c4b8200554b",
+   "quality": 0,
+   "lossy": false
+  },
+  {
+   "file": "synth-png-grey16-trns.png",
+   "mode": "I;16",
+   "hash_hex": "00001134000011342c4b00002c4b1134000000002c4b2c4b00002c4b8200554b",
+   "quality": 0,
+   "lossy": false
+  },
+  {
+   "file": "synth-png-1bit.png",
+   "mode": "1",
+   "hash_hex": "9294a18fc34aa3de55692b0ea53ba38ec46fd57fda4a81ea9a124929390378ef",
+   "quality": 0,
+   "lossy": false
+  },
+  {
+   "file": "synth-png-1bit-trns.png",
+   "mode": "1",
+   "hash_hex": "9294a18fc34aa3de55692b0ea53ba38ec46fd57fda4a81ea9a124929390378ef",
+   "quality": 0,
+   "lossy": false
+  },
+  {
+   "file": "synth-gif.gif",
+   "mode": "P",
+   "hash_hex": "7366bccae6924871c9ccb3ce88b146712f026f87647318f893ccdb8d6c23f5c8",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "synth-gif-offset-frame.gif",
+   "mode": "P",
+   "hash_hex": "66b6f9655b01fe05fe016b917e81f665b305878e007e41bb01fe847e01fefa01",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "synth-gif-offset-transparent.gif",
+   "mode": "P",
+   "hash_hex": "66b6f9645bc1fe04fe016b917e81b665f305978e807e41bb01be946e01fe7a01",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "synth-gif-transparent-past-palette.gif",
+   "mode": "P",
+   "hash_hex": "6d1bdab585fa2f0485fabb91057a1e65e340678c7a0581fa7a85056e7a85fa91",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "synth-gif-frame-overruns-screen.gif",
+   "mode": "P",
+   "hash_hex": "7366bccae6924871c9ccb3ce88b146712f026f87647318f893ccdb8d6c23f5c8",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "synth-webp-lossless.webp",
+   "mode": "RGB",
+   "hash_hex": "907dbaa55b7eff9010627e82417fbb84507f007faf84457eda99a86a0a80447f",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "synth-webp-alpha.webp",
+   "mode": "RGBA",
+   "hash_hex": "907dbaa55b7eff9010627e82417fbb84507f007faf84457eda99a86a0a80447f",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "synth-webp-lossy.webp",
+   "mode": "RGB",
+   "hash_hex": "903d9ba55f7ebf9010627f92417f3b84407f007ffb84457f9299a86a0a81447f",
+   "quality": 100,
+   "lossy": true
+  },
+  {
+   "file": "synth-webp-lossy-alpha.webp",
+   "mode": "RGBA",
+   "hash_hex": "983dabb55f7ebf8010627e92417f3b84007f007feb844d7fba99a8684a80447f",
+   "quality": 100,
+   "lossy": true
+  },
+  {
+   "file": "synth-bmp.bmp",
+   "mode": "RGB",
+   "hash_hex": "907dbaa55b7eff9010627e82417fbb84507f007faf84457eda99a86a0a80447f",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "synth-tiff-rgb.tiff",
+   "mode": "RGB",
+   "hash_hex": "907dbaa55b7eff9010627e82417fbb84507f007faf84457eda99a86a0a80447f",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "synth-tiff-rgba.tiff",
+   "mode": "RGBA",
+   "hash_hex": "907dbaa55b7eff9010627e82417fbb84507f007faf84457eda99a86a0a80447f",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "synth-tiff-rgba-associated.tiff",
+   "mode": "RGBA",
+   "hash_hex": "807d0201517e3f80506f6280417f3b84507f007bef854d7e9299b97f0b85ff7f",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "synth-tiff-palette.tiff",
+   "mode": "P",
+   "hash_hex": "7366bccae6924871c9ccb3ce88b146712f026f87647318f893ccdb8d6c23f5c8",
+   "quality": 100,
+   "lossy": false
+  },
+  {
+   "file": "synth-tiff-1bit.tiff",
+   "mode": "1",
+   "hash_hex": "9294a18fc34aa3de55692b0ea53ba38ec46fd57fda4a81ea9a124929390378ef",
+   "quality": 0,
+   "lossy": false
+  },
+  {
+   "file": "synth-tiff-1bit-g4.tiff",
+   "mode": "1",
+   "hash_hex": "9294a18fc34aa3de55692b0ea53ba38ec46fd57fda4a81ea9a124929390378ef",
+   "quality": 0,
+   "lossy": false
+  }
+ ]
+}
