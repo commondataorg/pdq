@@ -114,7 +114,8 @@ func HashFile(ctx context.Context, path string, opts Options) ([]Feature, error)
 	if !opts.EveryFrame {
 		step = max(int(min(sph*st.fps, math.MaxInt32)), 1)
 	}
-	return decode(ctx, ffmpeg, input, spec, st, step, defaultWorkers(opts.Workers, st, runtime.GOMAXPROCS(0)))
+	procs := runtime.GOMAXPROCS(0)
+	return decode(ctx, ffmpeg, input, spec, st, step, procs, defaultWorkers(opts.Workers, st, procs))
 }
 
 // defaultWorkers returns workers if it is set, else procs reduced so the
@@ -225,9 +226,10 @@ func filter(st stream, step int) string {
 
 // decodeArgs make frame n the n-th decoded frame of the video stream spec
 // selects, in its stored orientation and codec cropping, and fail on any
-// decoding error.
-func decodeArgs(input, spec string, st stream, step int) []string {
-	args := []string{"-nostdin", "-v", "error", "-max_error_rate", "0"}
+// decoding error. threads replaces ffmpeg's default, which ignores a CPU quota.
+func decodeArgs(input, spec string, st stream, step, threads int) []string {
+	t := strconv.Itoa(threads)
+	args := []string{"-nostdin", "-v", "error", "-max_error_rate", "0", "-threads", t, "-filter_threads", t}
 	args = append(args, inputArgs...)
 	args = append(args, "-noautorotate", "-apply_cropping", "codec", "-reinit_filter", "0", "-i", input,
 		"-map", "0:"+spec, "-fps_mode", "passthrough", "-vf", filter(st, step),
@@ -246,12 +248,12 @@ type result struct {
 	err  error
 }
 
-func decode(parent context.Context, ffmpeg, input, spec string, st stream, step, workers int) ([]Feature, error) {
+func decode(parent context.Context, ffmpeg, input, spec string, st stream, step, threads, workers int) ([]Feature, error) {
 	ctx, cancel := context.WithCancel(parent)
 	defer cancel()
 
 	stderr := &capped{max: maxStderr}
-	cmd := exec.CommandContext(ctx, ffmpeg, decodeArgs(input, spec, st, step)...)
+	cmd := exec.CommandContext(ctx, ffmpeg, decodeArgs(input, spec, st, step, threads)...)
 	cmd.Stderr = stderr
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {

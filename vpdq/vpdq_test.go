@@ -237,10 +237,23 @@ func TestHashFile_SkipAttachedPictures(t *testing.T) {
 func TestDecodeArgs_StreamSpec(t *testing.T) {
 	st := stream{width: 64, height: 64, fps: 30}
 	for _, spec := range []string{"v:0", "V:0"} {
-		args := decodeArgs("file:/in", spec, st, 1)
+		args := decodeArgs("file:/in", spec, st, 1, 2)
 		i := slices.Index(args, "-map")
 		if i < 0 || i+1 >= len(args) || args[i+1] != "0:"+spec {
 			t.Errorf("decodeArgs(%q) maps %v, want -map 0:%s", spec, args, spec)
+		}
+	}
+}
+
+// TestDecodeArgs_Threads checks the thread count is an input option, so it
+// reaches the decoder, and also sizes the filter graph.
+func TestDecodeArgs_Threads(t *testing.T) {
+	args := decodeArgs("file:/in", "v:0", stream{width: 64, height: 64, fps: 30}, 1, 3)
+	in := slices.Index(args, "-i")
+	for _, opt := range []string{"-threads", "-filter_threads"} {
+		i := slices.Index(args, opt)
+		if i < 0 || i > in || args[i+1] != "3" {
+			t.Errorf("decodeArgs gave %v, want %s 3 before -i", args, opt)
 		}
 	}
 }

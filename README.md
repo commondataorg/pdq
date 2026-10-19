@@ -230,6 +230,11 @@ capped to keep that under 1 GiB. Frames are always scaled to the first
 frame's size, so a later resolution change cannot grow these buffers, though
 ffmpeg's own decoder memory is outside that bound.
 
+ffmpeg gets `GOMAXPROCS` decoder and filter threads. Its own default is every
+CPU the process may run on, which a CFS quota such as a Kubernetes CPU limit
+does not narrow, so under a 2-CPU limit on a 22-core host it ran 22 threads
+and hashed 27% slower. Thread count does not change the output.
+
 The hashes depend on ffmpeg's colour conversion, which was identical across
 the builds tested on x86-64: shared 8.1.2 and static 8.1.1 and 9.0.2. The
 tests check every frame of eight fixture videos against the C++ output,
